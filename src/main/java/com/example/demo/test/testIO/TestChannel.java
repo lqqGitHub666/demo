@@ -68,7 +68,6 @@ public class TestChannel {
         //获取编码器
         CharsetEncoder ce = charset.newEncoder();
 
-
         //获取解码器
         CharsetDecoder cd = charset.newDecoder();
 
