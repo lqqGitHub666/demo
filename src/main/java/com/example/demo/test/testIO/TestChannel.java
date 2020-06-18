@@ -122,6 +122,9 @@ public class TestChannel {
 
         for (ByteBuffer byteBuffer : byteBuffers) {
             byteBuffer.flip();
+//            byte[] bytes = new byte[byteBuffer.limit()];
+//            byteBuffer.get(bytes);
+//            System.out.println(new String(bytes,0,bytes.length));
             System.out.println(new String(byteBuffer.array(),0,byteBuffer.limit()));
             System.out.println("-------------------");
         }

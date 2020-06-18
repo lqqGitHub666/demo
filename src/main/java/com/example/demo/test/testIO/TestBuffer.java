@@ -105,6 +105,7 @@ public class TestBuffer {
         System.out.println(byteBuffer.position());
         System.out.println(byteBuffer.limit());
         System.out.println(byteBuffer.capacity());
+        //System.out.println(new String(byteBuffer.array(),0,byteBuffer.limit()));
 
         //4、利用get()读取缓冲区中的数据
         System.out.println("---------------get()-------------------");
