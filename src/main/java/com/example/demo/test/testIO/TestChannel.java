@@ -54,6 +54,7 @@ public class TestChannel {
         outChannel.transferFrom(inChannel,0,inChannel.size());
         inChannel.close();
         outChannel.close();
+        //测试git
     }
 
     /**2.使用直接缓冲区完成文件的的复制(内存映射文件)*/
