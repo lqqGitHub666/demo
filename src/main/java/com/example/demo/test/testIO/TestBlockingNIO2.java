@@ -24,7 +24,7 @@ public class TestBlockingNIO2 {
     public void client() throws IOException {
         SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",9898));
 
-        FileChannel inChannel = FileChannel.open(Paths.get("F:/text.txt"), StandardOpenOption.READ);
+        FileChannel inChannel = FileChannel.open(Paths.get("E:/test/text.txt"), StandardOpenOption.READ);
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
@@ -53,7 +53,7 @@ public class TestBlockingNIO2 {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.bind(new InetSocketAddress(9898));
         SocketChannel socketChannel = serverSocketChannel.accept();
-        FileChannel outChannel = FileChannel.open(Paths.get("F:/test.txt"),StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+        FileChannel outChannel = FileChannel.open(Paths.get("E:/test/text1.txt"),StandardOpenOption.WRITE,StandardOpenOption.CREATE);
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         while (socketChannel.read(byteBuffer) != -1){
             byteBuffer.flip();
