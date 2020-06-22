@@ -1,8 +1,7 @@
 package com.example.demo.test;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author 作者 lqq
@@ -18,6 +17,9 @@ public class TestCollection {
         map.put(1,1);
 
         System.out.println(map.size());
+
+        List<String> list = new ArrayList<>();
+        Iterator<String> iterator = list.iterator();
 
     }
 }

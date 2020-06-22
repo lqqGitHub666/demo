@@ -55,6 +55,9 @@ public class TestNonBlockingNIO {
             byteBuffer.flip();
             socketChannel.write(byteBuffer);
             byteBuffer.clear();
+            if("close".equals(str)){
+                break;
+            }
         }
 
         //5.关闭通道
