@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginIntercepter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        System.out.println("jinlaile");
+        System.out.println(this.getClass().getName() + "jinlaile");
         return true;
     }
 

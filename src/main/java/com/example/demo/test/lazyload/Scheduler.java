@@ -14,7 +14,7 @@ public class Scheduler {
 
     @Scheduled(cron = "0/3 * * * * *")
     public void test(){
-        System.out.println("进来了");
+        System.out.println(this.getClass().getName()+ "进来了");
         SpringContextUtil.getBean(LazyLoadTest.class);
     }
 
