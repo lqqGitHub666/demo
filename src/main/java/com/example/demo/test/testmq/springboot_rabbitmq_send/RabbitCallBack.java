@@ -1,4 +1,4 @@
-package com.example.demo.test.testmq.springboot_rabbitmq;
+package com.example.demo.test.testmq.springboot_rabbitmq_send;
 
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
