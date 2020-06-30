@@ -1,4 +1,4 @@
-package com.example.demo.test.testmq.springboot_rabbitmq;
+package com.example.demo.test.testmq.springboot_rabbitmq_send;
 
 import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitMqMessageSend;
 import org.springframework.beans.factory.annotation.Autowired;

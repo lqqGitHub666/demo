@@ -1,6 +1,7 @@
 package com.example.demo.test.testmq.rabbitmqconfig;
 
 import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitCallBack;
+import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitMessageConverter;
 import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitReturnCallBack;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Message;
@@ -59,9 +60,11 @@ public class RabbitMqConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         //设置回调函数
         rabbitTemplate.setConfirmCallback(rabbitCallBack);
-        //开启失败回调
+        //开启失败回调模式
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setReturnCallback(rabbitReturnCallBack);
+        //设置数据序列化方式
+//        rabbitTemplate.setMessageConverter(new RabbitMessageConverter());
         return rabbitTemplate;
     }
 

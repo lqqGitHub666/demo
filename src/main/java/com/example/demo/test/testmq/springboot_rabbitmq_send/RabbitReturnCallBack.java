@@ -11,7 +11,18 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
  */
 public class RabbitReturnCallBack implements RabbitTemplate.ReturnCallback {
     @Override
-    public void returnedMessage(Message message, int i, String s, String s1, String s2) {
+    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+        //message:发送的消息+message
+        System.out.println(message);
+        //状态码
+        System.out.println(replyCode);
+        //错误信息
+        System.out.println(replyText);
+        //交换机
+        System.out.println(exchange);
+        //路由键
+        System.out.println(routingKey);
+
 
     }
 }
