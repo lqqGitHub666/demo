@@ -1,8 +1,8 @@
 package com.example.demo.test.testmq.springboot_rabbitmq;
 
+import com.rabbitmq.client.Channel;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,8 +15,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitMqConsumer {
 
-    @RabbitListener(queues = "queue1")
-    public void getMessage(String message){
+
+    @RabbitListener(queues = "queue",containerFactory = "simpleRabbitListenerContainerFactory")
+    public void getMessage(Message message, Channel channel) throws Exception{
         System.out.println(message);
+        if (consumeMessage()){
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+        }else {
+            //批量退回
+            channel.basicNack(message.getMessageProperties().getDeliveryTag(),false,true);
+            //单挑退回
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(),true);
+        }
+    }
+
+    //消费消息
+    public boolean consumeMessage(){
+        return true;
     }
 }

@@ -3,12 +3,12 @@ package com.example.demo.test.testmq.rabbitmqconfig;
 import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitCallBack;
 import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitMessageConverter;
 import com.example.demo.test.testmq.springboot_rabbitmq_send.RabbitReturnCallBack;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -76,5 +76,30 @@ public class RabbitMqConfig {
     @Bean
     public Queue queue(){
         return new Queue("queueTest");
+    }
+
+
+    //设置消费者属性
+//    @Bean
+//    public SimpleMessageListenerContainer simpleMessageListenerContainer(){
+//        SimpleMessageListenerContainer simpleMessageListenerContainer = new SimpleMessageListenerContainer();
+//        simpleMessageListenerContainer.setConnectionFactory(connectionFactory());
+//        simpleMessageListenerContainer.setMessageListener(new MessageListener() {
+//            @Override
+//            public void onMessage(Message message) {
+//
+//            }
+//        });
+//        simpleMessageListenerContainer.addQueueNames("","","");
+//        simpleMessageListenerContainer.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+//        return simpleMessageListenerContainer;
+//    }
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory(){
+        SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = new SimpleRabbitListenerContainerFactory();
+        simpleRabbitListenerContainerFactory.setConnectionFactory(connectionFactory());
+        simpleRabbitListenerContainerFactory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        return simpleRabbitListenerContainerFactory;
     }
  }
