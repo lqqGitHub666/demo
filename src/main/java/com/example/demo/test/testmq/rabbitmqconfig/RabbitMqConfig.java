@@ -64,7 +64,7 @@ public class RabbitMqConfig {
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setReturnCallback(rabbitReturnCallBack);
         //设置数据序列化方式
-//        rabbitTemplate.setMessageConverter(new RabbitMessageConverter());
+        rabbitTemplate.setMessageConverter(new RabbitMessageConverter());
         return rabbitTemplate;
     }
 
@@ -95,10 +95,13 @@ public class RabbitMqConfig {
 //        return simpleMessageListenerContainer;
 //    }
 
+    //配置消息确认
     @Bean
     public SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory(){
         SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = new SimpleRabbitListenerContainerFactory();
+        //设置连接工厂
         simpleRabbitListenerContainerFactory.setConnectionFactory(connectionFactory());
+        //设置手动消息确认
         simpleRabbitListenerContainerFactory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         return simpleRabbitListenerContainerFactory;
     }
