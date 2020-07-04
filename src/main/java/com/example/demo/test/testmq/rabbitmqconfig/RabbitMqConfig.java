@@ -7,11 +7,15 @@ import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.connection.PublisherCallbackChannel;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName: RabbitMqConfig
@@ -73,11 +77,36 @@ public class RabbitMqConfig {
         return new FanoutExchange("fanoutExchangeTest");
     }
 
+    //定义消息队列，并配置消息队列
     @Bean
     public Queue queue(){
-        return new Queue("queueTest");
+        Map<String,Object> map = new HashMap<>();
+        //设置死信队列
+        map.put("x-dead-letter-exchange","deadExchange");
+        //设置死信消息的重新定义的消息路由键
+        map.put("x-dead-letter-routing-key","testdead.key");
+        return new Queue("queueTest",true,false,false,map);
     }
 
+    //定义死信交换机
+    @Bean
+    public DirectExchange directExchange(){
+        DirectExchange directExchange = new DirectExchange("deadExchange");
+        return directExchange;
+    }
+
+    //用于接收死信交换机消息的的消息队列
+    @Bean
+    public Queue queue1(){
+        return new Queue("queueTest",true,false,false,null);
+    }
+
+    //绑定死信交换机和消息队列的关系
+    @Bean
+    public Binding binding(){
+        Binding binding = BindingBuilder.bind(queue1()).to(directExchange()).with("testdead.key");
+        return binding;
+    }
 
     //设置消费者属性
 //    @Bean
@@ -103,6 +132,8 @@ public class RabbitMqConfig {
         simpleRabbitListenerContainerFactory.setConnectionFactory(connectionFactory());
         //设置手动消息确认
         simpleRabbitListenerContainerFactory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        //设置消息预取的数量
+        simpleRabbitListenerContainerFactory.setPrefetchCount(500);
         return simpleRabbitListenerContainerFactory;
     }
  }
