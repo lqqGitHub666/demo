@@ -81,7 +81,7 @@ public class RabbitMqConfig {
     @Bean
     public Queue queue(){
         Map<String,Object> map = new HashMap<>();
-        //设置死信队列
+        //设置死信交换机
         map.put("x-dead-letter-exchange","deadExchange");
         //设置死信消息的重新定义的消息路由键
         map.put("x-dead-letter-routing-key","testdead.key");
@@ -95,7 +95,7 @@ public class RabbitMqConfig {
         return directExchange;
     }
 
-    //用于接收死信交换机消息的的消息队列
+    //定义用于接收死信交换机消息的的消息队列
     @Bean
     public Queue queue1(){
         return new Queue("queueTest",true,false,false,null);
