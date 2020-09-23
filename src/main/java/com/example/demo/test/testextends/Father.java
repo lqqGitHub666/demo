@@ -10,7 +10,7 @@ public class Father extends GrandFather {
 
     @Override
     public void say () {
-        super.say();
+//        super.say();
         System.out.println("father say hello");
 
     }

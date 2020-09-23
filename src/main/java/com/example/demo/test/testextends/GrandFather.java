@@ -11,4 +11,9 @@ public class GrandFather implements People {
     public void say() {
         System.out.println("hello world");
     }
+
+
+    public void write(){
+        System.out.println("write");
+    }
 }

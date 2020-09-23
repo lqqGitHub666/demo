@@ -11,4 +11,15 @@ public class Son extends Father {
     public void sayS() {
         say();
     }
+
+//    @Override
+//    public void say() {
+//        super.say();
+//    }
+
+    public static void main(String[] args) {
+        Son son = new Son();
+        son.say();
+        son.write();
+    }
 }
