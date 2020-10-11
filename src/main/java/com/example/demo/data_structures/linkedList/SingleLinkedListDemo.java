@@ -1,5 +1,7 @@
 package com.example.demo.data_structures.linkedList;
 
+import java.util.Stack;
+
 /**
  * @ClassName: SingleLinkedList
  * @Description: TODO
@@ -13,23 +15,32 @@ public class SingleLinkedListDemo {
         HeroNode heroNode1 = new HeroNode(1, "宋江", "及时雨");
         HeroNode heroNode2 = new HeroNode(2, "卢俊义", "玉麒麟");
         HeroNode heroNode3 = new HeroNode(3, "吴用", "智多星");
-        HeroNode heroNode4 = new HeroNode(3, "吴用", "智多星");
+        HeroNode heroNode4 = new HeroNode(4, "lqq", "玉面小白龙");
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.addByOrder(heroNode1);
         singleLinkedList.addByOrder(heroNode3);
         singleLinkedList.addByOrder(heroNode2);
         singleLinkedList.addByOrder(heroNode4);
-        System.out.println("查询出的英雄");
-        System.out.println(singleLinkedList.get(1));
-        System.out.println("新增后的list");
+        int length = SingleLinkedList.getLength(singleLinkedList.getHead());
+        System.out.println("链表有效长度length="+length);
+        int k = 3;
+        System.out.println("链表倒数第"+k+"个元素="+SingleLinkedList.findLastIndexNode(singleLinkedList.getHead(),k));
+        SingleLinkedList.reverseList(singleLinkedList.getHead());
+        System.out.println("反转的单链表如下");
         singleLinkedList.list();
-        HeroNode heroNode5 = new HeroNode(2, "小卢", "玉麒麟--小卢");
-        singleLinkedList.update(heroNode5);
-        System.out.println("修改后的list");
-        singleLinkedList.list();
-        singleLinkedList.delete(1);
-        System.out.println("删除后的list");
-        singleLinkedList.list();
+        System.out.println("反向打印的单链表如下");
+        SingleLinkedList.reversePrint(singleLinkedList.getHead());
+//        System.out.println("查询出的英雄");
+//        System.out.println(singleLinkedList.get(1));
+//        System.out.println("新增后的list");
+//        singleLinkedList.list();
+//        HeroNode heroNode5 = new HeroNode(2, "小卢", "玉麒麟--小卢");
+//        singleLinkedList.update(heroNode5);
+//        System.out.println("修改后的list");
+//        singleLinkedList.list();
+//        singleLinkedList.delete(1);
+//        System.out.println("删除后的list");
+//        singleLinkedList.list();
 
     }
 }
@@ -45,6 +56,10 @@ class SingleLinkedList{
 
     public SingleLinkedList() {
         head = new HeroNode(0,"","");
+    }
+
+    public HeroNode getHead() {
+        return head;
     }
 
     //添加数据
@@ -170,6 +185,9 @@ class SingleLinkedList{
         }
     }
 
+    /**
+     * 获取链表指定位置的值
+     */
     public HeroNode get(int index){
         HeroNode temp = head;
         while (true){
@@ -181,6 +199,75 @@ class SingleLinkedList{
                 return temp.next;
             }
             temp = temp.next;
+        }
+    }
+
+    /**
+     * 求单链表有效节点的个数
+     */
+    public static int getLength(HeroNode head){
+        int length = 0;
+        HeroNode cur = head.next;
+        while (cur != null){
+            length++;
+            cur = cur.next;
+        }
+        return length;
+    }
+
+    /**
+     * 查询链表第k个节点
+     */
+    public static HeroNode findLastIndexNode(HeroNode head,int index){
+        int length = getLength(head);
+        if (index <= 0 || length>index){
+            return null;
+        }
+        HeroNode cur = head.next;
+        for (int i = 0; i < length -index ; i++) {
+            cur = cur.next;
+        }
+        return cur;
+    }
+
+    /**
+     * 单链表反转
+     */
+    public static void reverseList(HeroNode head){
+
+        if (head.next == null || head.next.next == null){
+            return;
+        }
+
+        HeroNode next;
+        HeroNode reverseHead = new HeroNode(0,"","");
+        HeroNode cur = head.next;
+        while (cur != null){
+            next = cur.next;
+            cur.next = reverseHead.next;
+            reverseHead.next = cur;
+            cur = next;
+        }
+        head.next = reverseHead.next;
+    }
+
+    /**
+     * 从未到头打印单链表
+     */
+    public static void reversePrint(HeroNode head){
+
+        if (head .next == null){
+            System.out.println("链表为空");
+            return;
+        }
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode cur = head.next;
+        while (cur != null){
+            stack.push(cur);
+            cur = cur.next;
+        }
+        while (stack.size() > 0 ){
+            System.out.println(stack.pop());
         }
     }
 }
