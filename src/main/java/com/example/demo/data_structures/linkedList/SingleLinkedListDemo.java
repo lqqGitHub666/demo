@@ -24,7 +24,7 @@ public class SingleLinkedListDemo {
         int length = SingleLinkedList.getLength(singleLinkedList.getHead());
         System.out.println("链表有效长度length="+length);
         int k = 3;
-        System.out.println("链表倒数第"+k+"个元素="+SingleLinkedList.findLastIndexNode(singleLinkedList.getHead(),k));
+        System.out.println("链表倒数第 "+k+" 个元素="+SingleLinkedList.findLastIndexNode(singleLinkedList.getHead(),k));
         SingleLinkedList.reverseList(singleLinkedList.getHead());
         System.out.println("反转的单链表如下");
         singleLinkedList.list();
@@ -220,7 +220,7 @@ class SingleLinkedList{
      */
     public static HeroNode findLastIndexNode(HeroNode head,int index){
         int length = getLength(head);
-        if (index <= 0 || length>index){
+        if (index <= 0 || length < index){
             return null;
         }
         HeroNode cur = head.next;
