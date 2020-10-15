@@ -13,7 +13,7 @@ public class Josepfu {
         CircleSingleLinkedList circleSingleLinkedList = new CircleSingleLinkedList();
         circleSingleLinkedList.add(5);
         circleSingleLinkedList.showList();
-        circleSingleLinkedList.countBoy(1,2,5);
+        circleSingleLinkedList.countBoy(1,1,5);
     }
 
 }
@@ -71,12 +71,11 @@ class CircleSingleLinkedList{
         Boy startBoy = startPreBoy.getNext();
         while (true){
             if (count == countNum){
-                System.out.println(startBoy.getNo());
+                System.out.println("小孩出圈的编号："+startBoy.getNo());
                 startBoy = startBoy.getNext();
                 startPreBoy.setNext(startBoy);
                 if (startBoy.getNo() == startPreBoy.getNo()){
-                    System.out.println("最后一个了");
-                    System.out.println(startBoy.getNo());
+                    System.out.println("最后一个小孩编号："+startBoy.getNo());
                     break;
                 }
                 count = 1;
