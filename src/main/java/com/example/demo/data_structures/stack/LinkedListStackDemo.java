@@ -100,10 +100,6 @@ class SingleLinkedList<T>{
         tailIndex = 0;
     }
 
-    public Node<T> getHead() {
-        return head;
-    }
-
     //添加数据
     //当不考虑编号顺序时
     //1.找到当前链表的最后节点
