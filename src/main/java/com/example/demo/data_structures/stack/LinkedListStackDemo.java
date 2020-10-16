@@ -28,6 +28,9 @@ public class LinkedListStackDemo {
         System.out.println("弹出的数"+arrayStack.pop());
         System.out.println("弹出三条数据后，stack的数据");
         arrayStack.list();
+        arrayStack.push(40);
+        System.out.println("添加一条数据后，stack的数据");
+        arrayStack.list();
     }
 }
 
@@ -59,7 +62,12 @@ class LinkedListStack<T>{
             return;
         }
         top++;
-        singleLinkedList.addByOrder(data,top);
+        Object o = singleLinkedList.get(top);
+        if (o == null){
+            singleLinkedList.addByOrder(data,top);
+        }else {
+            singleLinkedList.update(data,top);
+        }
     }
 
     //出栈
