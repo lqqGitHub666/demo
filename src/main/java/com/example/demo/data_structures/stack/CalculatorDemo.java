@@ -12,7 +12,8 @@ import org.springframework.util.StringUtils;
 public class CalculatorDemo {
 
     public static void main(String[] args) {
-
+        Calculator calculator = new Calculator();
+        calculator.calculation("7*2*2-5+1-5+3-14");
     }
 
 
@@ -27,35 +28,64 @@ class Calculator{
         }
         char substring = expression.substring(0, 1).charAt(0);
         if (isOper(substring)){
-            throw new RuntimeException("è¡¨è¾¾å¼æ ¼å¼æœ‰é—®é¢˜");
+            throw new RuntimeException("±í´ïÊ½¸ñÊ½ÓĞÎÊÌâ");
         }
-        ArrayStack<Integer> numberStack = new ArrayStack<>(expression.length());
-        ArrayStack<Integer> operStack = new ArrayStack<>(expression.length()/2);
+        ArrayStack numberStack = new ArrayStack(expression.length());
+        ArrayStack operStack = new ArrayStack(expression.length()/2);
 
         int index = 0;
         while (true){
             char chr = expression.substring(index,index+1).charAt(0);
+            index++;
             if (isOper(chr)) {
-                if (chr > operStack.getStackTop()){
-                    Integer num1 = numberStack.pop();
-                    Integer num2 = numberStack.pop();
-                    Integer oper = operStack.pop();
+                if (!operStack.isEmpty() && priority(chr) <= priority(operStack.getStackTop())){
+                    int num1 = numberStack.pop();
+                    int num2 = numberStack.pop();
+                    int oper = operStack.pop();
                     int res = cal(num1,num2,oper);
                     numberStack.push(res);
-                    operStack.push(chr);
                 }
+                operStack.push(chr);
             }else {
-
+                String str = String.valueOf(chr);
+                while (true){
+                    if (index >= expression.length()){
+                        break;
+                    }
+                    char chr1 = expression.substring(index,index+1).charAt(0);
+                    if (isOper(chr1)){
+                        break;
+                    }
+                    index++;
+                    str = str + String.valueOf(chr1);
+                }
+                numberStack.push(Integer.valueOf(str));
+            }
+            if (index>=expression.length()){
+                break;
             }
         }
-
+        while (true){
+            if (operStack.isEmpty()){
+                break;
+            }
+            int num1 = numberStack.pop();
+            int num2 = numberStack.pop();
+            int oper = (int)operStack.pop();
+            int res = cal(num1,num2,oper);
+            numberStack.push(res);
+        }
+        //½«ÊıÕ»µÄ×îºóÊı£¬pop³ö£¬¾ÍÊÇ½á¹û
+        int res2 = numberStack.pop();
+        System.out.printf("±í´ïÊ½ %s = %d", expression, res2);
+        return res2;
     }
 
-    public boolean isOper(char chr){
+    private boolean isOper(int chr){
         return chr == '+' || chr == '-' || chr == '*' ||chr == '/';
     }
 
-    public int priority(char oper){
+    private int priority(int oper){
         if (oper == '+' || oper == '-'){
             return 0;
         }
@@ -66,14 +96,14 @@ class Calculator{
         }
     }
 
-    public int cal(int num1,int num2,int oper){
-        int res = 0; // res ç”¨äºå­˜æ”¾è®¡ç®—çš„ç»“æœ
+    private int cal(int num1,int num2,int oper){
+        int res = 0; // res ÓÃÓÚ´æ·Å¼ÆËãµÄ½á¹û
         switch (oper) {
             case '+':
                 res = num1 + num2;
                 break;
             case '-':
-                res = num2 - num1;// æ³¨æ„é¡ºåº
+                res = num2 - num1;// ×¢ÒâË³Ğò
                 break;
             case '*':
                 res = num1 * num2;
@@ -87,54 +117,54 @@ class Calculator{
         return res;
     }
 
-    static class ArrayStack<T>{
+    static class ArrayStack{
         private int maxSize;
 
-        private Object [] stack;
+        private int [] stack;
 
         private int top;
 
         public ArrayStack(int maxSize) {
             this.maxSize = maxSize;
-            this.stack = new Object[maxSize];
+            this.stack = new int[maxSize];
             this.top = -1;
         }
 
-        //æ ˆæ»¡
+        //Õ»Âú
         public boolean isFull(){
             return top == maxSize - 1;
         }
 
-        //æ ˆç©º
+        //Õ»¿Õ
         public boolean isEmpty(){
             return top == -1;
         }
 
-        //å…¥æ ˆ
-        public void push(Object data){
+        //ÈëÕ»
+        public void push(int data){
             if (isFull()){
-                System.out.println("æ ˆæ»¡ï¼Œæ— æ³•æ·»åŠ æ•°æ®");
+                System.out.println("Õ»Âú£¬ÎŞ·¨Ìí¼ÓÊı¾İ");
                 return;
             }
             top++;
             stack[top] = data;
         }
 
-        //å‡ºæ ˆ
-        public T pop(){
+        //³öÕ»
+        public int pop(){
             if (isEmpty()){
-                System.out.println("æ ˆç©ºï¼Œæ— æ•°æ®å¼¹å‡º");
-                return null;
+                System.out.println("Õ»¿Õ£¬ÎŞÊı¾İµ¯³ö");
+                return 0;
             }
-            Object data = stack[top];
+            int data = stack[top];
             top --;
-            return data == null ? null : (T)data;
+            return data;
         }
 
-        //æ˜¾ç¤ºæ ˆå†…æ•°æ®
+        //ÏÔÊ¾Õ»ÄÚÊı¾İ
         public void list(){
             if (isEmpty()){
-                System.out.println("æ ˆç©º");
+                System.out.println("Õ»¿Õ");
                 return;
             }
             for (int i = top; i >=0; i --){
@@ -142,9 +172,9 @@ class Calculator{
             }
         }
 
-        //è¿”å›æ ˆé¡¶æ•°æ®
-        public T getStackTop(){
-            return (T) stack[top];
+        //·µ»ØÕ»¶¥Êı¾İ
+        public int getStackTop(){
+            return  stack[top];
         }
 
     }
