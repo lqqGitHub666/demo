@@ -24,8 +24,8 @@ public class ServerIP {
         SERVER_IP_LIST.add("B");
         SERVER_IP_LIST.add("C");
         SERVER_IP_MAP = new HashMap<>(8);
-        SERVER_IP_MAP.put("A",2);
-        SERVER_IP_MAP.put("B",5);
-        SERVER_IP_MAP.put("C",3);
+        SERVER_IP_MAP.put("A",5);
+        SERVER_IP_MAP.put("B",1);
+        SERVER_IP_MAP.put("C",1);
     }
 }

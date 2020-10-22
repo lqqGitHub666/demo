@@ -30,11 +30,8 @@ public class RoundRobinDemo {
                 size += value;
             }
         }
-        if (index >= size){
-            index = 0;
-        }
         index ++;
-        int indexNum = index;
+        int indexNum = index%size;
         for (String key : ServerIP.SERVER_IP_MAP.keySet()) {
             int num = ServerIP.SERVER_IP_MAP.get(key);
             if (indexNum > num){
@@ -61,11 +58,8 @@ public class RoundRobinDemo {
                 }
             }
         }
-
-        if (index >= serverIPs.size()){
-            index = 0;
-        }
-        String ip = serverIPs.get(index);
+        int indexNum = index% size;
+        String ip = serverIPs.get(indexNum);
         index ++;
         return ip;
     }
@@ -78,5 +72,7 @@ public class RoundRobinDemo {
         index ++;
         return ip;
     }
+
+
 
 }
