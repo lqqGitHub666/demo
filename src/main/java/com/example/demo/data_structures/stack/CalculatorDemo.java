@@ -13,10 +13,8 @@ public class CalculatorDemo {
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
-        calculator.calculation("7*2*2-5+1-5+3-14");
+        calculator.calculation("200*2-100");
     }
-
-
 
 }
 
