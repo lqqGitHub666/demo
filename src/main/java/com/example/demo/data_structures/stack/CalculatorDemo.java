@@ -28,7 +28,7 @@ class Calculator{
         }
         char substring = expression.substring(0, 1).charAt(0);
         if (isOper(substring)){
-            throw new RuntimeException("±í´ïÊ½¸ñÊ½ÓĞÎÊÌâ");
+            throw new RuntimeException("è¡¨è¾¾å¼æ ¼å¼æœ‰é—®é¢˜");
         }
         ArrayStack numberStack = new ArrayStack(expression.length());
         ArrayStack operStack = new ArrayStack(expression.length()/2);
@@ -57,7 +57,7 @@ class Calculator{
                         break;
                     }
                     index++;
-                    str = str + String.valueOf(chr1);
+                    str = str + chr1;
                 }
                 numberStack.push(Integer.valueOf(str));
             }
@@ -75,9 +75,9 @@ class Calculator{
             int res = cal(num1,num2,oper);
             numberStack.push(res);
         }
-        //½«ÊıÕ»µÄ×îºóÊı£¬pop³ö£¬¾ÍÊÇ½á¹û
+        //å°†æ•°æ ˆçš„æœ€åæ•°ï¼Œpopå‡ºï¼Œå°±æ˜¯ç»“æœ
         int res2 = numberStack.pop();
-        System.out.printf("±í´ïÊ½ %s = %d", expression, res2);
+        System.out.printf("è¡¨è¾¾å¼ %s = %d", expression, res2);
         return res2;
     }
 
@@ -97,13 +97,13 @@ class Calculator{
     }
 
     private int cal(int num1,int num2,int oper){
-        int res = 0; // res ÓÃÓÚ´æ·Å¼ÆËãµÄ½á¹û
+        int res = 0; // res ç”¨äºå­˜æ”¾è®¡ç®—çš„ç»“æœ
         switch (oper) {
             case '+':
                 res = num1 + num2;
                 break;
             case '-':
-                res = num2 - num1;// ×¢ÒâË³Ğò
+                res = num2 - num1;// æ³¨æ„é¡ºåº
                 break;
             case '*':
                 res = num1 * num2;
@@ -130,30 +130,30 @@ class Calculator{
             this.top = -1;
         }
 
-        //Õ»Âú
+        //æ ˆæ»¡
         public boolean isFull(){
             return top == maxSize - 1;
         }
 
-        //Õ»¿Õ
+        //æ ˆç©º
         public boolean isEmpty(){
             return top == -1;
         }
 
-        //ÈëÕ»
+        //å…¥æ ˆ
         public void push(int data){
             if (isFull()){
-                System.out.println("Õ»Âú£¬ÎŞ·¨Ìí¼ÓÊı¾İ");
+                System.out.println("æ ˆæ»¡ï¼Œæ— æ³•æ·»åŠ æ•°æ®");
                 return;
             }
             top++;
             stack[top] = data;
         }
 
-        //³öÕ»
+        //å‡ºæ ˆ
         public int pop(){
             if (isEmpty()){
-                System.out.println("Õ»¿Õ£¬ÎŞÊı¾İµ¯³ö");
+                System.out.println("æ ˆç©ºï¼Œæ— æ•°æ®å¼¹å‡º");
                 return 0;
             }
             int data = stack[top];
@@ -161,10 +161,10 @@ class Calculator{
             return data;
         }
 
-        //ÏÔÊ¾Õ»ÄÚÊı¾İ
+        //æ˜¾ç¤ºæ ˆå†…æ•°æ®
         public void list(){
             if (isEmpty()){
-                System.out.println("Õ»¿Õ");
+                System.out.println("æ ˆç©º");
                 return;
             }
             for (int i = top; i >=0; i --){
@@ -172,7 +172,7 @@ class Calculator{
             }
         }
 
-        //·µ»ØÕ»¶¥Êı¾İ
+        //è¿”å›æ ˆé¡¶æ•°æ®
         public int getStackTop(){
             return  stack[top];
         }
