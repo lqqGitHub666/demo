@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 /**
  * @ClassName: Tree
  * @Description: TODO
@@ -9,6 +13,14 @@ package com.example.demo;
  */
 public class TreeDemo {
 
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        String aa = "啦 啦";
+        String aa1 = URLEncoder.encode(aa, "UTF-8");
+//        aa1 = aa1.replaceAll("\\+","%20");
+        System.out.println(aa1);
+        String decode = URLDecoder.decode(aa1, "UTF-8");
+        System.out.println(decode);
+    }
 
 }
 
@@ -16,7 +28,7 @@ class Tree{
 
     private Long size;
 
-    private Object root;
+    private Node root;
 
     public Tree(Long size) {
         this.size = size;

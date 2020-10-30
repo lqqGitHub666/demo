@@ -17,19 +17,19 @@ public class LinkedListStackDemo {
         arrayStack.push(30);
         arrayStack.push(40);
         arrayStack.push(40);
-        System.out.println("Ìí¼ÓÍêºóµÄstackÊı¾İ");
+        System.out.println("æ·»åŠ å®Œåçš„stackæ•°æ®");
         arrayStack.list();
-        System.out.println("µ¯³öµÄÊı"+arrayStack.pop());
-        System.out.println("µ¯³öÒ»ÌõÊı¾İºó£¬stackµÄÊı¾İ");
+        System.out.println("å¼¹å‡ºçš„æ•°"+arrayStack.pop());
+        System.out.println("å¼¹å‡ºä¸€æ¡æ•°æ®åï¼Œstackçš„æ•°æ®");
         arrayStack.list();
-        System.out.println("µ¯³öµÄÊı"+arrayStack.pop());
-        System.out.println("µ¯³öÁ½ÌõÊı¾İºó£¬stackµÄÊı¾İ");
+        System.out.println("å¼¹å‡ºçš„æ•°"+arrayStack.pop());
+        System.out.println("å¼¹å‡ºä¸¤æ¡æ•°æ®åï¼Œstackçš„æ•°æ®");
         arrayStack.list();
-        System.out.println("µ¯³öµÄÊı"+arrayStack.pop());
-        System.out.println("µ¯³öÈıÌõÊı¾İºó£¬stackµÄÊı¾İ");
+        System.out.println("å¼¹å‡ºçš„æ•°"+arrayStack.pop());
+        System.out.println("å¼¹å‡ºä¸‰æ¡æ•°æ®åï¼Œstackçš„æ•°æ®");
         arrayStack.list();
         arrayStack.push(40);
-        System.out.println("Ìí¼ÓÒ»ÌõÊı¾İºó£¬stackµÄÊı¾İ");
+        System.out.println("æ·»åŠ ä¸€æ¡æ•°æ®åï¼Œstackçš„æ•°æ®");
         arrayStack.list();
     }
 }
@@ -45,20 +45,20 @@ class LinkedListStack<T>{
         top = -1;
     }
 
-    //Õ»Âú
+    //æ ˆæ»¡
     public boolean isFull(){
         return top == maxSize - 1;
     }
 
-    //Õ»¿Õ
+    //æ ˆç©º
     public boolean isEmpty(){
         return top == -1;
     }
 
-    //ÈëÕ»
+    //å…¥æ ˆ
     public void push(T data){
         if (isFull()){
-            System.out.println("Õ»Âú£¬ÎŞ·¨Ìí¼ÓÊı¾İ");
+            System.out.println("æ ˆæ»¡ï¼Œæ— æ³•æ·»åŠ æ•°æ®");
             return;
         }
         top++;
@@ -70,10 +70,10 @@ class LinkedListStack<T>{
         }
     }
 
-    //³öÕ»
+    //å‡ºæ ˆ
     public T pop(){
         if (isEmpty()){
-            System.out.println("Õ»¿Õ£¬ÎŞÊı¾İµ¯³ö");
+            System.out.println("æ ˆç©ºï¼Œæ— æ•°æ®å¼¹å‡º");
             return null;
         }
         Object data = singleLinkedList.get(top);
@@ -81,10 +81,10 @@ class LinkedListStack<T>{
         return data == null ? null : (T)data;
     }
 
-    //ÏÔÊ¾Õ»ÄÚÊı¾İ
+    //æ˜¾ç¤ºæ ˆå†…æ•°æ®
     public void list(){
         if (isEmpty()){
-            System.out.println("Õ»¿Õ");
+            System.out.println("æ ˆç©º");
             return;
         }
         for (int i = top; i >=0; i --){
@@ -94,11 +94,11 @@ class LinkedListStack<T>{
 }
 
 /**
- * ¶¨ÒåSingleLinkedList¹ÜÀíÎÒÃÇµÄÓ¢ĞÛ
+ * å®šä¹‰SingleLinkedListç®¡ç†æˆ‘ä»¬çš„è‹±é›„
  **/
 class SingleLinkedList<T>{
 
-    //ÏÈ³õÊ¼»¯Ò»¸öÍ·½Úµã,Í·½Úµã²»Òª¶¯£¬²»´æ·ÅÊı¾İ
+    //å…ˆåˆå§‹åŒ–ä¸€ä¸ªå¤´èŠ‚ç‚¹,å¤´èŠ‚ç‚¹ä¸è¦åŠ¨ï¼Œä¸å­˜æ”¾æ•°æ®
     private Node<T> head;
 
     private int tailIndex;
@@ -108,54 +108,54 @@ class SingleLinkedList<T>{
         tailIndex = 0;
     }
 
-    //Ìí¼ÓÊı¾İ
-    //µ±²»¿¼ÂÇ±àºÅË³ĞòÊ±
-    //1.ÕÒµ½µ±Ç°Á´±íµÄ×îºó½Úµã
-    //2.¼û×îºóÕâ¸ö½ÚµãµÄnextÖ¸ÏòĞÂµÄ½Úµã
+    //æ·»åŠ æ•°æ®
+    //å½“ä¸è€ƒè™‘ç¼–å·é¡ºåºæ—¶
+    //1.æ‰¾åˆ°å½“å‰é“¾è¡¨çš„æœ€åèŠ‚ç‚¹
+    //2.è§æœ€åè¿™ä¸ªèŠ‚ç‚¹çš„nextæŒ‡å‘æ–°çš„èŠ‚ç‚¹
     public void add(T data){
-        //ÒòÎªhead½Úµã²»ÄÜ¶¯£¬Òò´ËÎÒÃÇĞèÒªÒ»¸ö¸¨Öú±äÁ¿temp
+        //å› ä¸ºheadèŠ‚ç‚¹ä¸èƒ½åŠ¨ï¼Œå› æ­¤æˆ‘ä»¬éœ€è¦ä¸€ä¸ªè¾…åŠ©å˜é‡temp
         Node temp = head;
-        //±éÀúÁ´±í£¬ÕÒµ½×îºó
+        //éå†é“¾è¡¨ï¼Œæ‰¾åˆ°æœ€å
         while (true){
-            //ÕÒµ½Á´±í×îºó
+            //æ‰¾åˆ°é“¾è¡¨æœ€å
             if (temp.next == null){
                 break;
             }
-            //Èç¹ûÃ»ÓĞÕÒµ½×îºó,¾ÍÈÃtempµÈÓÚtempµÄÏÂÒ»¸ö½Úµã£¬¼´ÈÃtempºóÒÆÒ»Î»
+            //å¦‚æœæ²¡æœ‰æ‰¾åˆ°æœ€å,å°±è®©tempç­‰äºtempçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå³è®©tempåç§»ä¸€ä½
             temp = temp.next;
         }
-        //µ±ÍË³öµÄwhileÊ±£¬temp¾ÍÖ¸ÏòÁËÁ´±íµÄ×îºó
-        //½«×îºóÕâ¸ö½ÚµãµÄnextÖ¸ÏòĞÂ½Úµã
+        //å½“é€€å‡ºçš„whileæ—¶ï¼Œtempå°±æŒ‡å‘äº†é“¾è¡¨çš„æœ€å
+        //å°†æœ€åè¿™ä¸ªèŠ‚ç‚¹çš„nextæŒ‡å‘æ–°èŠ‚ç‚¹
         Node<T> node = new Node<>(tailIndex++,data);
         temp.next = node;
     }
 
-    //ÏÔÊ¾Á´±í
+    //æ˜¾ç¤ºé“¾è¡¨
     public void list(){
-        //ÅĞ¶ÏÁ´±íÊÇ·ñÎª¿Õ
+        //åˆ¤æ–­é“¾è¡¨æ˜¯å¦ä¸ºç©º
         if (head.next == null){
-            System.out.println("Á´±íÎª¿Õ");
+            System.out.println("é“¾è¡¨ä¸ºç©º");
             return;
         }
-        //ÒòÎªÍ·½Úµã²»ÄÜ¶¯£¬Òò´ËĞèÒªÒ»¸ö¸¨Öú±äÁ¿À´±éÀú
+        //å› ä¸ºå¤´èŠ‚ç‚¹ä¸èƒ½åŠ¨ï¼Œå› æ­¤éœ€è¦ä¸€ä¸ªè¾…åŠ©å˜é‡æ¥éå†
         Node<T> temp = head.next;
         while (true){
-            //ÅĞ¶ÏÊÇ·ñÎªÁ´±í×îºó
+            //åˆ¤æ–­æ˜¯å¦ä¸ºé“¾è¡¨æœ€å
             if (temp == null){
                 break;
             }
-            //Êä³ö½ÚµãĞÅÏ¢
+            //è¾“å‡ºèŠ‚ç‚¹ä¿¡æ¯
             System.out.println(temp);
-            //½«nextºóÒÆ
+            //å°†nextåç§»
             temp = temp.next;
         }
     }
 
-    //µÚ¶şÖÖÌí¼Ó½ÚµãµÄ·½Ê½£¬¸ù¾İÅÅÃû²åÈëµ½Ö¸¶¨Î»ÖÃ
-    //£¨Èç¹ûÓĞÕâ¸öÅÅÃû£¬ÔòÌí¼ÓÊ§°Ü£¬²¢¸ø³öÌáÊ¾£©
+    //ç¬¬äºŒç§æ·»åŠ èŠ‚ç‚¹çš„æ–¹å¼ï¼Œæ ¹æ®æ’åæ’å…¥åˆ°æŒ‡å®šä½ç½®
+    //ï¼ˆå¦‚æœæœ‰è¿™ä¸ªæ’åï¼Œåˆ™æ·»åŠ å¤±è´¥ï¼Œå¹¶ç»™å‡ºæç¤ºï¼‰
     public void addByOrder(T data,int index){
-        //ÒòÎªÍ·½Úµã²»ÄÜ¶¯£¬Òò´ËÎÒÃÇÈÔÈ»Í¨¹ı¸¨ÖúÖ¸ÕëÀ´°ïÖúÕÒµ½Ìí¼ÓµÄÎ»ÖÃ
-        //ÒòÎªµ¥Á´±í£¬ÒòÎªÎÒÃÇÕÒµÄtempÊÇÎ»ÓÚÌí¼ÓÎ»ÖÃµÄÇ°Ò»¸ö½Úµã£¬·ñÔò¼ÓÈë²»ÁË
+        //å› ä¸ºå¤´èŠ‚ç‚¹ä¸èƒ½åŠ¨ï¼Œå› æ­¤æˆ‘ä»¬ä»ç„¶é€šè¿‡è¾…åŠ©æŒ‡é’ˆæ¥å¸®åŠ©æ‰¾åˆ°æ·»åŠ çš„ä½ç½®
+        //å› ä¸ºå•é“¾è¡¨ï¼Œå› ä¸ºæˆ‘ä»¬æ‰¾çš„tempæ˜¯ä½äºæ·»åŠ ä½ç½®çš„å‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå¦åˆ™åŠ å…¥ä¸äº†
         Node<T> node = new Node<>(index,data);
         Node<T> temp = head;
         boolean flag = false;
@@ -178,14 +178,14 @@ class SingleLinkedList<T>{
             temp.next = node;
             node.next = next;
         }else if (temp.next.index == node.index){
-            System.out.println("Ó¢ĞÛ±àºÅÖØ¸´");
+            System.out.println("è‹±é›„ç¼–å·é‡å¤");
         }
     }
-    //¸ù¾İno±àºÅĞŞ¸Ä½ÚµãĞÅÏ¢
+    //æ ¹æ®noç¼–å·ä¿®æ”¹èŠ‚ç‚¹ä¿¡æ¯
     public void update(T newData,int index){
-        //ÅĞ¶ÏÁ´±íÎª¿Õ
+        //åˆ¤æ–­é“¾è¡¨ä¸ºç©º
         if (head.next == null){
-            System.out.println("Á´±íÎª¿Õ");
+            System.out.println("é“¾è¡¨ä¸ºç©º");
             return;
         }
         Node<T> newNode = new Node<>(index,newData);
@@ -193,7 +193,7 @@ class SingleLinkedList<T>{
         boolean flag = false;
         while (true){
             if (temp == null){
-                System.out.println("Á´±íÎª¿Õ");
+                System.out.println("é“¾è¡¨ä¸ºç©º");
                 break;
             }
             if (temp.index == newNode.index){
@@ -205,19 +205,19 @@ class SingleLinkedList<T>{
         if (flag){
             temp.data = newNode.data;
         }else {
-            System.out.println("ĞŞ¸ÄµÄ½Úµã²»´æÔÚ");
+            System.out.println("ä¿®æ”¹çš„èŠ‚ç‚¹ä¸å­˜åœ¨");
         }
     }
 
-    //´ÓÒ»¸öÁ´±íÖĞÉ¾³ıÒ»¸ö½ÚµãµÄË¼Â·
-    //1.head½Úµã²»ÄÜ¶¯£¬Òò´ËÎÒÃÇĞèÒªÒ»¸ötemp¸¨Öú½ÓµãÕÒµ½´ıÉ¾³ıµÄÇ°Ò»¸ö½Úµã
-    //2.ËµÃ÷ÎÒÃÇ±È½ÏÊ±£¬ÊÇtemp.next.noºÍĞèÒªÉ¾³ıµÄ½ÚµãµÄno±È½Ï
+    //ä»ä¸€ä¸ªé“¾è¡¨ä¸­åˆ é™¤ä¸€ä¸ªèŠ‚ç‚¹çš„æ€è·¯
+    //1.headèŠ‚ç‚¹ä¸èƒ½åŠ¨ï¼Œå› æ­¤æˆ‘ä»¬éœ€è¦ä¸€ä¸ªtempè¾…åŠ©æ¥ç‚¹æ‰¾åˆ°å¾…åˆ é™¤çš„å‰ä¸€ä¸ªèŠ‚ç‚¹
+    //2.è¯´æ˜æˆ‘ä»¬æ¯”è¾ƒæ—¶ï¼Œæ˜¯temp.next.noå’Œéœ€è¦åˆ é™¤çš„èŠ‚ç‚¹çš„noæ¯”è¾ƒ
     public void delete(int index){
         Node<T> temp = head;
         boolean flag = false;
         while (true){
             if (temp.next == null){
-                System.out.println("Á´±íÎª¿Õ");
+                System.out.println("é“¾è¡¨ä¸ºç©º");
                 break;
             }
             if (temp.next.index == index){
@@ -229,18 +229,18 @@ class SingleLinkedList<T>{
         if (flag){
             temp.next = temp.next.next;
         }else {
-            System.out.println("Ã»ÓĞÕÒµ½ÒªÉ¾³ıµÄ½Úµã");
+            System.out.println("æ²¡æœ‰æ‰¾åˆ°è¦åˆ é™¤çš„èŠ‚ç‚¹");
         }
     }
 
     /**
-     * »ñÈ¡Á´±íÖ¸¶¨Î»ÖÃµÄÖµ
+     * è·å–é“¾è¡¨æŒ‡å®šä½ç½®çš„å€¼
      */
     public T get(int index){
         Node<T> temp = head;
         while (true){
             if (temp.next == null){
-                System.out.println("Á´±íÎª¿Õ");
+                System.out.println("é“¾è¡¨ä¸ºç©º");
                 return null;
             }
             if (temp.next.index == index){
@@ -251,7 +251,7 @@ class SingleLinkedList<T>{
     }
 
     /**
-     * Çóµ¥Á´±íÓĞĞ§½ÚµãµÄ¸öÊı
+     * æ±‚å•é“¾è¡¨æœ‰æ•ˆèŠ‚ç‚¹çš„ä¸ªæ•°
      */
     public int getLength(){
         int length = 0;
@@ -264,7 +264,7 @@ class SingleLinkedList<T>{
     }
 
     /**
-     * ²éÑ¯Á´±íµÚk¸ö½Úµã
+     * æŸ¥è¯¢é“¾è¡¨ç¬¬kä¸ªèŠ‚ç‚¹
      */
     public Node findLastIndexNode(int index){
         int length = getLength();
@@ -279,7 +279,7 @@ class SingleLinkedList<T>{
     }
 
     /**
-     * µ¥Á´±í·´×ª
+     * å•é“¾è¡¨åè½¬
      */
     public void reverseList(){
 
@@ -300,13 +300,13 @@ class SingleLinkedList<T>{
     }
 
     /**
-     * ¶¨Òånode£¬Ã¿¸önode¶ÔÏó¾ÍÊÇÒ»¸ö½Úµã
+     * å®šä¹‰nodeï¼Œæ¯ä¸ªnodeå¯¹è±¡å°±æ˜¯ä¸€ä¸ªèŠ‚ç‚¹
      */
     static class Node<T>{
 
         public int index;
         public T data;
-        public Node next;//Ö¸ÏòÏÂÒ»¸ö½Úµã
+        public Node next;//æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 
         public Node(int index, T data) {
             this.index = index;
