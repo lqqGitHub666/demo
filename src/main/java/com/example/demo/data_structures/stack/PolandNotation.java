@@ -24,7 +24,7 @@ public class PolandNotation {
 
         String aa = "1+((2+3)*4)-5";
         List<String> strings = toInfixExpressionList(aa);
-        List<String> strings1 = parseSuffixExpreesionList(strings);
+        List<String> strings1 = parseSuffixExpressionList(strings);
         System.out.println(strings1);
         Collections.reverse(strings1);
         strings1.forEach(s -> System.out.print(s+"  "));
@@ -88,7 +88,7 @@ public class PolandNotation {
         return ls;
     }
 
-    public static List<String> parseSuffixExpreesionList(List<String> ls){
+    public static List<String> parseSuffixExpressionList(List<String> ls){
         //定义两个栈
         Stack<String> s1 = new Stack<>();
         Stack<String> s2 = new Stack<>();
