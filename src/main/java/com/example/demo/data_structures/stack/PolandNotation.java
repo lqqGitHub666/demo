@@ -25,7 +25,7 @@ public class PolandNotation {
         String aa = "1+((2+3)*4)-5";
         List<String> strings = toInfixExpressionList(aa);
         List<String> strings1 = parseSuffixExpressionList(strings);
-        System.out.println(strings1);
+        System.out.println(strings);
         Collections.reverse(strings1);
         strings1.forEach(s -> System.out.print(s+"  "));
         System.out.println("\nres="+calculate(strings1));
@@ -92,23 +92,24 @@ public class PolandNotation {
         //定义两个栈
         Stack<String> s1 = new Stack<>();
         Stack<String> s2 = new Stack<>();
-        for (String s : ls) {
-            if (s.matches("\\d+")){
+        for (int i = 0; i < ls.size(); i++) {
+            String s = ls.get(i);
+            if (s.matches("\\d+")) {
                 s2.push(s);
-            }else {
-                if (s1.empty() || s.equals("(") || s1.peek().equals("(") || priority(s.charAt(0)) > priority(s1.peek().charAt(0))){
-                    s1.push(s);
-                }else if (s.equals(")")){
-                    while (!s1.empty()){
+            } else {
+                if (s.equals(")")) {
+                    while (!s1.empty()) {
                         String str = s1.pop();
-                        if (str.equals("(")){
+                        if (str.equals("(")) {
                             break;
                         }
                         s2.push(str);
                     }
-                }
-                while (!s1.empty() && priority(s.charAt(0)) < priority(s1.peek().charAt(0))){
+                } else if (s1.empty() || s.equals("(") || s1.peek().equals("(") || priority(s.charAt(0)) > priority(s1.peek().charAt(0))) {
+                    s1.push(s);
+                } else {
                     s2.push(s1.pop());
+                    i--;
                 }
             }
         }
