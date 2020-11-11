@@ -105,8 +105,12 @@ public class PolandNotation {
                 } else if (s1.empty() || s.equals("(") || s1.peek().equals("(") || priority(s.charAt(0)) > priority(s1.peek().charAt(0))) {
                     s1.push(s);
                 } else {
-                    s2.push(s1.pop());
-                    i--;
+//                    while (!s1.empty() && priority(s.charAt(0)) <= priority(s1.peek().charAt(0))){
+//                        s2.push(s1.pop());
+//                    }
+//                    s1.push(s);
+                   s2.push(s1.pop());
+                   i--;
                 }
             }
         }
