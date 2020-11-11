@@ -21,8 +21,8 @@ public class PolandNotation {
 //        List<String> listString = getListString(ss);
 //        System.out.println(listString);
 //        System.out.println("res = "+calculate(listString));
-
-        String aa = "1+((2+3)*4)-5";
+//1+((2+3)*4-1*1)-5
+        String aa = "1+1+1*2-3";
         List<String> strings = toInfixExpressionList(aa);
         List<String> strings1 = parseSuffixExpressionList(strings);
         System.out.println(strings);
@@ -98,13 +98,10 @@ public class PolandNotation {
                 s2.push(s);
             } else {
                 if (s.equals(")")) {
-                    while (!s1.empty()) {
-                        String str = s1.pop();
-                        if (str.equals("(")) {
-                            break;
-                        }
-                        s2.push(str);
+                    while (!s1.peek().equals("(")) {
+                        s2.push(s1.pop());
                     }
+                    s1.pop();
                 } else if (s1.empty() || s.equals("(") || s1.peek().equals("(") || priority(s.charAt(0)) > priority(s1.peek().charAt(0))) {
                     s1.push(s);
                 } else {
