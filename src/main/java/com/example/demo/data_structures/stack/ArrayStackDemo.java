@@ -74,6 +74,12 @@ class ArrayStack<T>{
         return data == null ? null : (T)data;
     }
 
+    //栈顶元素
+    public T peek(){
+        Object data = stack[top];
+        return data == null ? null : (T)data;
+    }
+
     //显示栈内数据
     public void list(){
         if (isEmpty()){
