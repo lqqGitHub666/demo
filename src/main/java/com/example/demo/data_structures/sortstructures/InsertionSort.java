@@ -14,6 +14,7 @@ public class InsertionSort {
         insertSort(arr);
     }
 
+    //插入排序，时间复杂度O(n²)
     public static void insertSort(int[] arr){
         for (int i = 1; i < arr.length; i++) {
             int insertVal = arr[i];
