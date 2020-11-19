@@ -11,8 +11,8 @@ import java.util.Arrays;
 public class InsertionSort {
     public static void main(String[] args) {
         int[] arr = new int[]{101,34,119,10,18,9,1};
-//        insertSort(arr);
-        insertSort2(arr);
+        insertSort(arr);
+//        insertSort2(arr);
     }
 
     //插入排序，时间复杂度O(n²)
