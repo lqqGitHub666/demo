@@ -13,6 +13,14 @@ public class InsertionSort {
         int[] arr = new int[]{101,34,119,10,18,9,1};
         insertSort(arr);
 //        insertSort2(arr);
+        int[] arr1 = new int[80000];
+        for (int i = 0; i < 80000; i++) {
+            arr1[i] = (int) (Math.random()*80000);
+        }
+        long start = System.currentTimeMillis();
+        insertSort(arr1);
+        long length = System.currentTimeMillis() - start;
+        System.out.println(length);
     }
 
     //插入排序，时间复杂度O(n²)
@@ -25,8 +33,8 @@ public class InsertionSort {
                 insertIndex --;
             }
             arr[insertIndex+1] = insertVal;
-            System.out.println("第( "+i+" )轮排序后的数组：");
-            System.out.println(Arrays.toString(arr));
+//            System.out.println("第( "+i+" )轮排序后的数组：");
+//            System.out.println(Arrays.toString(arr));
         }
     }
 

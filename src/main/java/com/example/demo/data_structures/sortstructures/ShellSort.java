@@ -44,7 +44,16 @@ public class ShellSort {
 //            }
 //        }
         System.out.println(Arrays.toString(arr));
-        shellSort(arr);
+        int[] arr1 = new int[80000];
+        for (int i = 0; i < 80000; i++) {
+            arr1[i] = (int) (Math.random()*80000);
+        }
+        long start = System.currentTimeMillis();
+        shellSort2(arr1);
+        long length = System.currentTimeMillis() - start;
+        System.out.println(length);
+        System.out.println(arr1.length);
+//        System.out.println(Arrays.toString(arr1));
     }
 
     public static void shellSort(int[] arr){
@@ -59,7 +68,21 @@ public class ShellSort {
                     }
                 }
             }
-            System.out.println(Arrays.toString(arr));
+//            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    public static void shellSort2(int[] arr){
+        for (int gap = arr.length/2; gap > 0; gap/=2) {
+            for (int i = gap; i < arr.length; i++) {
+                int insertVal = arr[i];
+                int insertIndex = i-gap;
+                while (insertIndex >= 0 && arr[insertIndex] > insertVal){
+                    arr[insertIndex + gap] = arr[insertIndex];
+                    insertIndex -=gap;
+                }
+                arr[insertIndex+gap] = insertVal;
+            }
         }
     }
 }
