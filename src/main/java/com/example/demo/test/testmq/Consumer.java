@@ -39,7 +39,7 @@ public class Consumer {
 
     public static void main(String[] args) throws Exception {
 //        Producer.sendByExchange("hehe");
-//        getMessage();
+        getMessage("queue1");
     }
 
 }

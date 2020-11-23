@@ -25,7 +25,7 @@ public class ConnectionUtil {
         //创建一个连接工厂
         ConnectionFactory connectionFactory = new ConnectionFactory();
         //设置rabbitmq 服务端所在地址 我这里在本地就是本地
-        connectionFactory.setHost("192.168.72.3");
+        connectionFactory.setHost("114.215.209.214");
         //设置端口号，连接用户名，虚拟地址等
         connectionFactory.setPort(5672);
         connectionFactory.setUsername("lqq");

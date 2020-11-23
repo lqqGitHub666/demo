@@ -19,7 +19,7 @@ public class TestRabbitMq {
         System.out.println("请输入：");
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()){
-            Producer.sendByExchange(new Date().toString()+"\n用户lqq说："+scanner.next(),"exchangeFanout","");
+            Producer.sendByExchange(new Date().toString()+"\n用户lqq说："+scanner.next(),"exchangeDirect","");
         }
     }
 
@@ -30,11 +30,11 @@ public class TestRabbitMq {
         System.out.println("请输入：");
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()){
-            Producer.sendByExchange(new Date().toString()+"\n用户px说："+scanner.next(),"exchangeFanout","");
+            Producer.sendByExchange(new Date().toString()+"\n用户px说："+scanner.next(),"exchangeDirect","");
         }
     }
 
     public static void main(String[] args) throws Exception {
-        Producer.sendByExchange("debug","exchangeDirect","info.user");
+        Producer.sendByExchange("呵呵","exchangeDirect","info.user");
     }
 }
