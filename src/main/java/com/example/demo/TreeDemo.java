@@ -5,7 +5,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * @ClassName: Tree
+ * @ClassName: TreeTest
  * @Description: TODO
  * @author: liuqingqing
  * @Date: 2020/9/28 10:38
@@ -34,16 +34,10 @@ class Tree{
         this.size = size;
     }
 
-    public void add(){
-
+    public void add(int i){
+        root = new Node(i,null,null);
     }
 
-    public static void main(String[] args) {
-        Node node = new Node();
-        Node temp = node;
-        temp.data = 1;
-        System.out.println(node.data);
-    }
 
     static class Node<T>{
         private T data;
@@ -51,6 +45,14 @@ class Tree{
         private T right;
 
         private T left;
+
+        private String aa;
+
+        public Node(T data, T right, T left) {
+            this.data = data;
+            this.right = right;
+            this.left = left;
+        }
 
         public T getData() {
             return data;
