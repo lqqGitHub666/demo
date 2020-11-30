@@ -22,7 +22,7 @@ public class BinaryTreeDemo {
 //        binaryTree.proOrder();
 //        binaryTree.infixOrder();
 //        binaryTree.postOrder();
-        System.out.println(binaryTree.proGet(6));
+        System.out.println(binaryTree.preGet(6));
         System.out.println(binaryTree.infixGet(6));
         System.out.println(binaryTree.postGet(6));
     }
@@ -34,9 +34,9 @@ class BinaryTree{
     private Node root;
 
     //前序遍历
-    public void proOrder(){
+    public void preOrder(){
         if (this.root != null){
-            this.root.proOrder();
+            this.root.preOrder();
         }
     }
 
@@ -65,9 +65,9 @@ class BinaryTree{
 
     }
 
-    public Node proGet(int no){
+    public Node preGet(int no){
         if (this.root != null){
-            return this.root.proGet(no);
+            return this.root.preGet(no);
         }else {
             return null;
         }
@@ -86,6 +86,19 @@ class BinaryTree{
             return this.root.postGet(no);
         }else {
             return null;
+        }
+    }
+
+    //简单删除
+    public void simpleDelNode(int no){
+        if (root != null){
+            if (root.no == no){
+                root = null;
+            }else {
+                root.simpleDelNode(no);
+            }
+        }else {
+            System.out.println("空树");
         }
     }
 
@@ -145,13 +158,13 @@ class BinaryTree{
         }
 
         //前序遍历
-        public void proOrder(){
+        public void preOrder(){
             System.out.println(this);
             if (this.left != null){
-                this.left.proOrder();
+                this.left.preOrder();
             }
             if (this.right != null){
-                this.right.proOrder();
+                this.right.preOrder();
             }
         }
 
@@ -177,26 +190,28 @@ class BinaryTree{
             System.out.println(this);
         }
 
-        public Node proGet(int no){
+        //前序查找
+        public Node preGet(int no){
             if (this.no == no){
                 return this;
             }
             Node node = null;
             if (this.left != null){
-                node = this.left.proGet(no);
+                node = this.left.preGet(no);
             }
             if (node != null){
                 return node;
             }
             if (this.right != null) {
-                node =  this.right.proGet(no);
+                node =  this.right.preGet(no);
             }
             return node;
         }
+        //中序查找
         public Node infixGet(int no){
             Node node = null;
             if (this.left != null){
-                node = this.left.proGet(no);
+                node = this.left.infixGet(no);
             }
             if (node != null){
                 return node;
@@ -205,21 +220,21 @@ class BinaryTree{
                 return this;
             }
             if (this.right != null) {
-                node =  this.right.proGet(no);
+                node =  this.right.infixGet(no);
             }
             return node;
         }
-
+        //后序查找
         public Node postGet(int no){
             Node node = null;
             if (this.left != null){
-                node = this.left.proGet(no);
+                node = this.left.postGet(no);
             }
             if (node != null){
                 return node;
             }
             if (this.right != null) {
-                node =  this.right.proGet(no);
+                node =  this.right.postGet(no);
             }
             if (node != null){
                 return node;
@@ -230,7 +245,7 @@ class BinaryTree{
             return null;
         }
 
-
+        //添加节点
         public void setNode(Node node) {
 
             if (node.no > this.no){
@@ -248,5 +263,24 @@ class BinaryTree{
             }
 
         }
+
+        //删除节点（简单删除）
+        public void simpleDelNode(int no){
+            if (this.left != null && this.left.no == no){
+                this.left = null;
+                return;
+            }
+            if (this.right != null && this.right.no == no){
+                this.right = null;
+                return;
+            }
+            if (this.left != null){
+                this.left.simpleDelNode(no);
+            }
+            if (this.right != null){
+                this.right.simpleDelNode(no);
+            }
+        }
+
     }
 }
