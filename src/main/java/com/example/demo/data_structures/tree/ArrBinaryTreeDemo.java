@@ -14,7 +14,7 @@ public class ArrBinaryTreeDemo {
         ArrBinaryTree arrBinaryTree = new ArrBinaryTree(arr);
 //        arrBinaryTree.preOrder();
         arrBinaryTree.infixOrder();
-        arrBinaryTree.postOrder();
+//        arrBinaryTree.postOrder();
     }
 
 
