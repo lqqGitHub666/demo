@@ -25,8 +25,9 @@ public class ThreadedBinaryTreeDemo {
         node2.setRight(node5);
         node3.setLeft(node6);
         threadedBinaryTree.threadedNodes();
-        System.out.println(node5.getLeft());
-        System.out.println(node5.getRight());
+//        System.out.println(node5.getLeft());
+//        System.out.println(node5.getRight());
+        threadedBinaryTree.threadedList();
     }
 
 
@@ -46,6 +47,7 @@ class ThreadedBinaryTree{
         threadedNodes(root);
     }
 
+    //线索化二叉树
     public void threadedNodes(Node node){
         if (node == null){
             return;
@@ -61,6 +63,22 @@ class ThreadedBinaryTree{
         }
         pre = node;
         threadedNodes(node.right);
+    }
+
+    //遍历线索化二叉树
+    public void threadedList(){
+        Node node = root;
+        while (node != null){
+            while (node.getLeftType() == 0){
+                node = node.getLeft();
+            }
+            System.out.println(node);
+            while (node.getRightType() == 1){
+                node = node.getRight();
+                System.out.println(node);
+            }
+            node = node.getRight();
+        }
     }
 
     static class Node {
