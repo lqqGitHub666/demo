@@ -1,7 +1,9 @@
 package com.example.demo.data_structures.huffmancode;
 
 
+import java.io.*;
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * @ClassName: HuffmanCode
@@ -13,7 +15,7 @@ import java.util.*;
 public class HuffmanCode {
 
     public static void main(String[] args) {
-        String content = "i like like like java do you like a java";
+//        String content = "i like like like java do you like a java";
 //        System.out.println(Integer.toBinaryString(8 | 256));
 //        byte[] contentBytes = content.getBytes();
 //        Node huffmanTree = createHuffmanTree(getNodes(contentBytes));
@@ -22,10 +24,72 @@ public class HuffmanCode {
 //        System.out.println(huffmanCodes);
 //        byte[] zip = zip(contentBytes, huffmanCodes);
 //        System.out.println(Arrays.toString(zip));
-        byte[] bytes = huffmanZip(content);
+//        byte[] bytes = huffmanZip(content);
 //        System.out.println(Arrays.toString(bytes));
-        byte[] decode = decode(huffmanCodes, bytes);
-        System.out.println(new String(decode));
+//        byte[] decode = decode(huffmanCodes, bytes);
+//        System.out.println(new String(decode));
+//        zipFile("F:\\test.bmp","F:\\test.zip");
+        unZipFile("F:\\test.zip","F:\\aa.bmp");
+    }
+
+    public static void unZipFile(String zipFile,String dstFile) {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        FileOutputStream fos = null;
+        try {
+            fis = new FileInputStream(zipFile);
+            ois = new ObjectInputStream(fis);
+            byte[] bytes = (byte[]) ois.readObject();
+            Map<Byte,String> huffmanCodes = (Map<Byte, String>) ois.readObject();
+            byte[] decodeBytes = decode(huffmanCodes, bytes);
+            fos = new FileOutputStream(dstFile);
+            fos.write(decodeBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                assert fos != null;
+                fos.close();
+                assert fis != null;
+                fis.close();
+                assert ois != null;
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public static void zipFile(String srcFile,String dstPath){
+
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        ObjectOutputStream obs = null;
+        try {
+            fis = new FileInputStream(srcFile);
+            byte[] bytes = new byte[fis.available()];
+            fis.read(bytes);
+            byte[] huffmanBytes = huffmanZip(bytes);
+            fos = new FileOutputStream(dstPath);
+            obs = new ObjectOutputStream(fos);
+            obs.writeObject(huffmanBytes);
+            obs.writeObject(huffmanCodes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                assert fis != null;
+                fis.close();
+                assert fos != null;
+                fos.close();
+                assert obs != null;
+                obs.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private static byte[] decode(Map<Byte,String> huffmanCodes,byte[] huffmanBytes){
@@ -56,8 +120,10 @@ public class HuffmanCode {
         }
 
         byte[] bytes1 = new byte[bytes.size()];
-        for (int i = 0; i < bytes.size(); i++) {
-            bytes1[i] = bytes.get(i);
+        int index = 0;
+        for (Byte aByte : bytes) {
+            bytes1[index] = aByte;
+            index ++;
         }
         return bytes1;
     }
@@ -80,6 +146,13 @@ public class HuffmanCode {
             return null;
         }
         byte[] contentBytes = content.getBytes();
+
+        return huffmanZip(contentBytes);
+    }
+    public static byte[] huffmanZip(byte[] contentBytes){
+        if (contentBytes == null || contentBytes.length == 0){
+            return null;
+        }
         //生成huffman树
         Node huffmanTree = createHuffmanTree(getNodes(contentBytes));
         //生成huffman编码
