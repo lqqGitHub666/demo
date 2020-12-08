@@ -56,16 +56,24 @@ class BinarySortTree{
                 targetNode.value = rightMinNode;
             }else {
                 if (targetNode.left != null){
-                    if (parent.left.value == value){
-                        parent.left = targetNode.left;
-                    }else if (parent.right.value == value){
-                        parent.right = targetNode.left;
+                    if (parent == null){
+                        root = targetNode.left;
+                    }else {
+                        if (parent.left.value == value){
+                            parent.left = targetNode.left;
+                        }else if (parent.right.value == value){
+                            parent.right = targetNode.left;
+                        }
                     }
                 }else if (targetNode.right != null){
-                    if (parent.left.value == value){
-                        parent.left = targetNode.right;
-                    }else if (parent.right.value == value){
-                        parent.right = targetNode.right;
+                    if (parent == null){
+                        root = targetNode.right;
+                    }else {
+                        if (parent.left.value == value){
+                            parent.left = targetNode.right;
+                        }else if (parent.right.value == value){
+                            parent.right = targetNode.right;
+                        }
                     }
                 }
             }
