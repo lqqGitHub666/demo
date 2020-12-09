@@ -1,4 +1,4 @@
-package com.example.demo.data_structures.binarysorttree;
+package com.example.demo.data_structures.tree.binarysorttree;
 
 /**
  * @ClassName: BinarySortTreeDemo
