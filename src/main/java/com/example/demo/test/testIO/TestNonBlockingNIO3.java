@@ -29,8 +29,8 @@ public class TestNonBlockingNIO3 {
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
-        Scanner scanner = new Scanner(System.in);
         while (true){
+            Scanner scanner = new Scanner(System.in);
             String s = scanner.nextLine();
             System.out.println("client:"+s);
             byteBuffer.put(s.getBytes());
@@ -78,34 +78,36 @@ public class TestNonBlockingNIO3 {
                         byteBuffer.flip();
                         System.out.println(new String(byteBuffer.array(),0,line));
                         byteBuffer.clear();
-                        byteBuffer.put("你的消息已发送到服务器".getBytes());
-                        byteBuffer.flip();
-                        socketChannel.write(byteBuffer);
-                        byteBuffer.clear();
+//                        byteBuffer.put("你的消息已发送到服务器".getBytes());
+//                        byteBuffer.flip();
+//                        socketChannel.write(byteBuffer);
+//                        byteBuffer.clear();
                     }
+                }else if (selectionKey.isWritable()){
+
                 }
                 selectionKeyIterator.remove();
             }
         }
     }
 
-    {
-        System.out.println("hahaha");
-    }
-    static {
-        System.out.println("static");
-    }
-
-    public TestNonBlockingNIO3() {
-        System.out.println("constructor");
-    }
-
-    public static void main(String[] args) {
-        {
-            System.out.println(123456);
-        }
-        new TestNonBlockingNIO3();
-        new TestNonBlockingNIO3();
-        new TestNonBlockingNIO3();
-    }
+//    {
+//        System.out.println("hahaha");
+//    }
+//    static {
+//        System.out.println("static");
+//    }
+//
+//    public TestNonBlockingNIO3() {
+//        System.out.println("constructor");
+//    }
+//
+//    public static void main(String[] args) {
+//        {
+//            System.out.println(123456);
+//        }
+//        new TestNonBlockingNIO3();
+//        new TestNonBlockingNIO3();
+//        new TestNonBlockingNIO3();
+//    }
 }
