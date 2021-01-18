@@ -23,36 +23,21 @@ public class TestNonBlockingNIO3 {
     @Test
     public void client() throws IOException {
 
-        SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",8090));
+        SocketChannel socketChannel = SocketChannel.open();
 
         socketChannel.configureBlocking(false);
 
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-
-        while (true){
-            Scanner scanner = new Scanner(System.in);
-            String s = scanner.nextLine();
-            System.out.println("client:"+s);
-            byteBuffer.put(s.getBytes());
-            byteBuffer.flip();
-            socketChannel.write(byteBuffer);
-            byteBuffer.clear();
-//            try {
-//                Thread.sleep(3000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            int line;
-//            while ((line = socketChannel.read(byteBuffer)) > 0 ){
-//                byteBuffer.flip();
-//                System.out.println(new String(byteBuffer.array(),0,line));
-//                byteBuffer.clear();
-//            }
-            if ("bye".equals(s)) {
-                break;
+        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", 8090);
+        if (!socketChannel.connect(inetSocketAddress)){
+            while (!socketChannel.finishConnect()){
+                System.out.println("未完成连接");
             }
         }
-        socketChannel.close();
+        String a = "hello lqq";
+        ByteBuffer byteBuffer = ByteBuffer.wrap(a.getBytes());
+        socketChannel.write(byteBuffer);
+        System.in.read();
+
     }
 
     @Test
@@ -78,36 +63,31 @@ public class TestNonBlockingNIO3 {
                         byteBuffer.flip();
                         System.out.println(new String(byteBuffer.array(),0,line));
                         byteBuffer.clear();
-//                        byteBuffer.put("你的消息已发送到服务器".getBytes());
-//                        byteBuffer.flip();
-//                        socketChannel.write(byteBuffer);
-//                        byteBuffer.clear();
                     }
-                }else if (selectionKey.isWritable()){
-
+//                    socketChannel.register(selector,SelectionKey.OP_WRITE);
                 }
                 selectionKeyIterator.remove();
             }
         }
     }
 
-//    {
-//        System.out.println("hahaha");
-//    }
-//    static {
-//        System.out.println("static");
-//    }
-//
-//    public TestNonBlockingNIO3() {
-//        System.out.println("constructor");
-//    }
-//
-//    public static void main(String[] args) {
-//        {
-//            System.out.println(123456);
-//        }
-//        new TestNonBlockingNIO3();
-//        new TestNonBlockingNIO3();
-//        new TestNonBlockingNIO3();
-//    }
+    {
+        System.out.println("hahaha");
+    }
+    static {
+        System.out.println("static");
+    }
+
+    public TestNonBlockingNIO3() {
+        System.out.println("constructor");
+    }
+
+    public static void main(String[] args) {
+        {
+            System.out.println(123456);
+        }
+        new TestNonBlockingNIO3();
+        new TestNonBlockingNIO3();
+        new TestNonBlockingNIO3();
+    }
 }
