@@ -39,7 +39,8 @@ public class Server implements Runnable {
         //一直循环
         while(true){
             try {
-                this.selector.select();//多路复用器开始监听
+                //多路复用器开始监听
+                this.selector.select();
                 //获取已经注册在多了复用器上的key通道集
                 Iterator<SelectionKey> keys = this.selector.selectedKeys().iterator();
                 //遍历
