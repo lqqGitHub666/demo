@@ -51,7 +51,7 @@ public class WebSocketServer {
                             pipeline.addLast(new WebSocketServerProtocolHandler("/hello"));
 
                             //自定义的handler ，处理业务逻辑
-                            pipeline.addLast(null);
+                            pipeline.addLast(new MyTextWebSocketFrameHandler());
                         }
                     });
 
