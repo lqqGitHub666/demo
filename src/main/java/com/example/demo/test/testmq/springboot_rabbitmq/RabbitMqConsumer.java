@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2020/6/28 21:27
  * @Version: 1.0
  */
-@Component
+//@Component
 public class RabbitMqConsumer {
 
 

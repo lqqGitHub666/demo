@@ -24,7 +24,7 @@ import java.util.Map;
  * @Date: 2020/6/28 21:12
  * @Version: 1.0
  */
-@Configuration
+//@Configuration
 public class RabbitMqConfig {
 
     @Bean
