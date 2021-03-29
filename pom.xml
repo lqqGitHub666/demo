@@ -125,6 +125,11 @@
             <!--和安装的 MQ 版本一致-->
             <version>4.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.6.1</version>
+        </dependency>
     </dependencies>
 
     <build>
