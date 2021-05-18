@@ -24,7 +24,6 @@ public class Test {
             }).start();
         }
         Thread.sleep(1000);
-        System.out.println("lalala");
         System.out.println(test.atomicInteger);
     }
 
