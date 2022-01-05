@@ -2,6 +2,8 @@ package com.example.demo.freemarker;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @ProjectName: demo
  * @Package: com.example.demo.freemarker
@@ -17,9 +19,13 @@ public class Book {
 
     private String name;
 
-    private String author;
+    private Author author;
 
     private String year;
 
     private String price;
+
+    private String address;
+
+    List<Store> storeList;
 }
