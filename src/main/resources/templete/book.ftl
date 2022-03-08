@@ -13,6 +13,7 @@
             <storeList>
             <#list book.storeList as store>
                 <store>
+                    <test>${book.author.name}</test>
                     <name>${store.name}</name>
                     <address>${store.address}</address>
                 </store>

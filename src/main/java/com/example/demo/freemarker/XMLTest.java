@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import freemarker.template.Configuration;
 
 import freemarker.template.Template;
@@ -84,8 +86,13 @@ public class XMLTest {
         List<Book> bookList = new ArrayList<>();
         bookList.add(book);
         bookList.add(book1);
+        String s = JSON.toJSONString(bookList);
+        System.out.println(s);
+        List<JSONObject> jsonObject = JSON.parseArray(s,JSONObject.class);
+
+        List<Map> maps = JSON.parseArray(s,Map.class);
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("bookList",bookList);
+        dataMap.put("bookList",jsonObject);
         String resp = null;
         try {
             resp = XMLTest.process("book.ftl", dataMap);
